@@ -25,7 +25,7 @@ Vcs-Browser: https://anonscm.debian.org/cgit/pkg-utopia/udisks2.git
 Homepage: http://www.freedesktop.org/wiki/Software/udisks
 
 Package: udisks2
-Architecture: linux-any
+Architecture: any
 Multi-Arch: foreign
 Depends: ${shlibs:Depends}, ${misc:Depends}, udev, dbus, parted, libpam-systemd
 Pre-Depends: ${misc:Pre-Depends}
@@ -60,7 +60,7 @@ Description: udisks2 documentation
 
 Package: libudisks2-0
 Section: libs
-Architecture: linux-any
+Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -75,7 +75,7 @@ Description: GObject based library to access udisks2
 
 Package: libudisks2-dev
 Section: libdevel
-Architecture: linux-any
+Architecture: any
 Multi-Arch: same
 Depends: ${shlibs:Depends},
  ${misc:Depends},
@@ -92,7 +92,7 @@ Description: GObject based library to access udisks2 - development files
 
 Package: gir1.2-udisks-2.0
 Section: introspection
-Architecture: linux-any
+Architecture: any
 Multi-Arch: same
 Depends: ${gir:Depends},
  ${shlibs:Depends},
