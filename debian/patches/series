@@ -1,6 +1,5 @@
-00git_test_fixes.patch
+# cherry-picked from upstream
+
 # Debian patches for udisks
-mount_in_media.patch
-unsupported_acls.patch
-libsystemd.patch
+Decide-whether-devices-are-on-the-same-seat-by-uid-n.patch
 99_blankon-mount-disks.patch

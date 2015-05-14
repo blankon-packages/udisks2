@@ -1,9 +1,62 @@
-udisks2 (2.1.3-5blankon1) tambora; urgency=medium
+udisks2 (2.1.5-3blankon1) tambora; urgency=medium
 
-  * debian/patches:
+  * Upstream release.
+  * debian/patches :
     - 99_blankon-mount-disks.patch
 
- -- Mijortsa <azis.astrojim@surabaya.di.blankon.in>  Wed, 12 Nov 2014 22:49:43 +0700
+ -- Mijortsa <azis.astrojim@surabaya.di.blankon.in>  Thu, 14 May 2015 13:46:38 +0700
+
+udisks2 (2.1.5-3) unstable; urgency=medium
+
+  * debian/control: Drop obsolete XS-Testsuite: field, dpkg adds this
+    automatically now.
+
+ -- Martin Pitt <mpitt@debian.org>  Mon, 27 Apr 2015 10:03:57 +0200
+
+udisks2 (2.1.5-2) experimental; urgency=medium
+
+  * Team upload.
+  * Treat devices as "on the same seat" if the requesting uid owns
+    the active login session on the device's seat. This means that shared
+    services run by the user's `systemd --user`, such as the dbus-daemon
+    run by dbus-user-session and the D-Bus or systemd services that
+    it starts, can manipulate the user's devices even though those are
+    not associated with any particular login session or seat.
+    (Closes: #780004)
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 31 Mar 2015 19:16:58 +0100
+
+udisks2 (2.1.5-1) experimental; urgency=medium
+
+  [ Martin Pitt ]
+  * New upstream release:
+    - Drop default [df]mask for VFAT and NTFS (LP: #453605)
+  * Drop our patches, included upstream.
+  * debian/rules: Configure with --enable-fhs-media, to continue mounting in
+    /media instead of /run/media. (Previously done by a Debian patch)
+  * debian/tests/upstream-system: Drop ntfs-3g test dependency; due to a bug
+    in the BLKRRPART ioctl this causes eternal udev and thus mount hangs.
+    (see LP #1398859)
+  * udisks2-inhibit: Don't use mount --move, as it doesn't work under shared
+    mounts (i. e. under systemd). (LP: #1410851)
+
+  [ Michael Biebl ]
+  * Update Vcs-Browser URL to use cgit and https.
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 06 Mar 2015 09:29:30 +0100
+
+udisks2 (2.1.4-1) experimental; urgency=medium
+
+  * New upstream bug fix release.
+    - Avoids waking up disks from standby through SMART updates.
+      (LP: #1281588)
+    - Drop 00git_test_fixes.patch and libsystemd.patch, included upstream.
+  * Bump Standards-Version to 3.9.6 (no changes necessary).
+  * Add missing python3-dbus autopkgtest dependency.
+  * integration-test: Skip double mount check for NTFS. Patch cherry-picked
+    from upstream git.
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 18 Dec 2014 14:07:40 +0100
 
 udisks2 (2.1.3-5) unstable; urgency=medium
 
