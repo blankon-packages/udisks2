@@ -1,10 +1,68 @@
-udisks2 (2.1.5-3blankon1) tambora; urgency=medium
+udisks2 (2.1.7-2blankon1) tambora; urgency=medium
 
-  * Upstream release.
-  * debian/patches :
-    - 99_blankon-mount-disks.patch
+  * blankon-udisks2-policy.patch
+  * changes debia/control mainteiner
 
- -- Mijortsa <azis.astrojim@surabaya.di.blankon.in>  Thu, 14 May 2015 13:46:38 +0700
+ -- Mijortsa <astrojim.blankon@gmail.com>  Tue, 12 Jul 2016 02:45:30 +0700
+
+udisks2 (2.1.7-2) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * Avoid using "dh_install -X.la". This would suppress installation of
+    anything containing the substring .la *anywhere*. -X.la is
+    less bad than -X.a (which stopped gnome-software from installing
+    its .appstream file as intended, for example), but still seems
+    somewhat risky.
+  * Use https for Vcs-Git
+
+  [ Michael Biebl ]
+  * Run wrap-and-sort -at.
+  * Use https for upstream homepage.
+  * Drop --disable-silent-rules from debian/rules. This is now handled by dh
+    directly depending on whether the DH_QUIET environment variable is set.
+  * Bump Standards-Version to 3.9.8.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 26 May 2016 05:39:47 +0200
+
+udisks2 (2.1.7-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Drop git_Fix-udiskctl-help-for-glib-2.45.patch, included upstream.
+  * debian/libudisks2-0.symbols: Add new symbols for this release.
+  * udisks2-inhibit: Stop fiddling with polkit rules; restarting it can break
+    existing clients/pending requests, and we can't use inotify as we don't
+    want to write anything on the actual file system and bind mounts don't
+    trigger inotify. Use a different approach of a temporary udev rule which
+    sets UDISKS_IGNORE on all block devices. This continues to avoid touching
+    the file system but does not need any daemon restarts, works with polkit
+    >= 106, and now also suppresses showing new block devices on the desktop.
+    (LP: #1508075)
+  * Bump Standards-Version to 3.9.7 (no changes necessary).
+  * debian/tests/upstream-system: Try to purge ntfs-3g, as the NTFS test still
+    hangs the kernel often (see 2.1.5-1).
+  * Add missing "make" test dependency.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 01 Mar 2016 10:52:39 +0100
+
+udisks2 (2.1.6-2) unstable; urgency=medium
+
+  * Fix udisksctl help crash with glib 2.45. (LP: #1478369)
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 28 Jul 2015 07:48:20 +0200
+
+udisks2 (2.1.6-1) unstable; urgency=medium
+
+  [ Martin Pitt ]
+  * New upstream release.
+    - Drop Decide-whether-devices-are-on-the-same-seat-by-uid-n.patch,
+      included upstream.
+  * debian/rules: Configure with explicit --libexecdir, as that's where the
+    daemon gets installed now.
+
+  [ Simon McVittie ]
+  * Disable Automake "silent rules" for more useful buildd logs
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 30 Jun 2015 10:41:32 +0200
 
 udisks2 (2.1.5-3) unstable; urgency=medium
 

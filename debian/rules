@@ -5,6 +5,7 @@
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
+		--libexecdir=/usr/lib \
 		--enable-gtk-doc \
 		--enable-fhs-media \
 		--with-systemdsystemunitdir=/lib/systemd/system
@@ -21,4 +22,5 @@ override_dh_auto_install:
 	fi
 
 override_dh_install:
-	dh_install -X.la --fail-missing
+	rm -f debian/tmp/usr/lib/*/*.la
+	dh_install --fail-missing
